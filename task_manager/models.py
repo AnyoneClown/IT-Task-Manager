@@ -30,10 +30,10 @@ class TaskType(models.Model):
 
 class Task(models.Model):
     PRIORITY_CHOICES = (
-        ("UR", 'Urgent'),
-        ("HG", 'High'),
-        ("MD", 'Medium'),
-        ("LW", 'Low'),
+        ("UR", "Urgent"),
+        ("HG", "High"),
+        ("MD", "Medium"),
+        ("LW", "Low"),
     )
 
     name = models.CharField(max_length=255)

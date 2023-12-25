@@ -26,37 +26,25 @@
   <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
     <div class="container">
       <div class="section text-center">
-        <h2 class="title">Worker list:</h2>
+        <h2 class="title">Worker list</h2>
         {% if worker_list %}
           <table class="table">
             <tr>
               <th>ID</th>
               <th>Username</th>
-              <th>Email</th>
               <th>Position</th>
-              <th>First Name</th>
-              <th>Last Name</th>
             </tr>
 
             {% for worker in worker_list %}
               <tr>
                 <td>
-                    {{ worker.id }}
+                  {{ worker.id }}
+                </td>
+                <td class="text-bold">
+                  <a href="{{ worker.get_absolute_url }}">{{ worker.username }}</a>
                 </td>
                 <td>
-                    {{ worker.username }}
-                </td>
-                <td>
-                    {{ worker.email }}
-                </td>
-                <td>
-                    {{ worker.position }}
-                </td>
-                <td>
-                    {{ worker.first_name }}
-                </td>
-                <td>
-                    {{ worker.last_name }}
+                  {{ worker.position }}
                 </td>
               </tr>
             {% endfor %}

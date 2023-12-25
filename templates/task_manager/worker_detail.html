@@ -17,7 +17,7 @@
       <div class="row">
         <div class="col-md-8 mx-auto">
           <div class="text-center">
-            <h1 class="text-white">{{ task.description }}</h1>
+            <h1 class="text-white">{{ worker.username }}</h1>
           </div>
         </div>
       </div>
@@ -26,37 +26,35 @@
   <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
     <div class="container">
       <div class="section text-center">
-        <h2 class="title">Task info</h2>
+        <h2 class="title">Worker info</h2>
         <table class="table">
           <tr>
             <th>ID</th>
-            <th>Deadline</th>
-            <th>Priority</th>
-            <th>Task type</th>
-            <th>Completed</th>
-            <th>Assignees</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th>Position</th>
+            <th></th>
           </tr>
             <tr>
               <td>
-                {{ task.id }}
+                {{ worker.id }}
               </td>
               <td>
-                {{ task.deadline }}
+                {{ worker.first_name }}
               </td>
               <td>
-                {{ task.get_priority_display }}
+                {{ worker.last_name }}
               </td>
               <td>
-                {{ task.task_type }}
+                {{ worker.email }}
               </td>
               <td>
-                {{ task.is_completed }}
+                {{ worker.position }}
               </td>
-              <td>
-                {{ assignees }}
-              </td>
-            </tr>
-          </table>
+
+          </tr>
+        </table>
       </div>
     </div>
   </div>

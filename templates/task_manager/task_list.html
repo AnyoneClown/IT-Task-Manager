@@ -35,28 +35,28 @@
               <th>Deadline</th>
               <th>Priority</th>
               <th>Task type</th>
-              <th>Is completed</th>
+              <th>Completed</th>
             </tr>
 
             {% for task in task_list %}
               <tr>
                 <td>
-                    {{ task.id }}
+                  {{ task.id }}
+                </td>
+                <td class="text-bold">
+                  <a href="{{ task.get_absolute_url}}">{{ task.name }}</a>
                 </td>
                 <td>
-                    {{ task.name }}
+                  {{ task.deadline }}
                 </td>
                 <td>
-                    {{ task.deadline }}
+                  {{ task.priority }}
                 </td>
                 <td>
-                    {{ task.priority }}
+                  {{ task.task_type }}
                 </td>
                 <td>
-                    {{ task.task_type }}
-                </td>
-                <td>
-                    {{ task.is_completed }}
+                  {{ task.is_completed }}
                 </td>
               </tr>
             {% endfor %}

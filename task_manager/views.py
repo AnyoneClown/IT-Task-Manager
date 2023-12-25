@@ -28,6 +28,16 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
     template_name = "task_manager/task_list.html"
 
 
+class TaskDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Task
+    queryset = Task.objects.all().select_related("task_type").prefetch_related("assignees")
+
+    def get_context_data(self, **kwargs):
+        context = super(TaskDetailView, self).get_context_data(**kwargs)
+        context["assignees"] = ", ".join(assignee.username for assignee in self.object.assignees.all())
+        return context
+
+
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = get_user_model()
     context_object_name = "worker_list"

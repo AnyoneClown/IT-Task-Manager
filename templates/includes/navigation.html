@@ -27,36 +27,16 @@
                       <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1">
                         Main pages
                       </h6>
-                      <a href="{% url 'task-manager:task-view' %}" class="dropdown-item border-radius-md">
+                      <a href="{% url 'task-manager:task-list' %}" class="dropdown-item border-radius-md">
                         <span>Tasks</span>
                       </a>
-                      <a href="{% url 'task-manager:worker-view' %}" class="dropdown-item border-radius-md">
+                      <a href="{% url 'task-manager:worker-list' %}" class="dropdown-item border-radius-md">
                         <span>Workers</span>
                       </a>
                       <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1 mt-3">
                         Account
                       </h6>
-                      <a href="registration/login" class="dropdown-item border-radius-md">
-                        <span>Sign In</span>
-                      </a>
-                    </div>
-                    <div class="d-lg-none">
-                      <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1">
-                        Landing Pages
-                      </h6>
-                      <a href="/about-us.html" class="dropdown-item border-radius-md">
-                        <span>About Us</span>
-                      </a>
-                      <a href="/contact-us.html" class="dropdown-item border-radius-md">
-                        <span>Contact Us</span>
-                      </a>
-                      <a href="/author.html" class="dropdown-item border-radius-md">
-                        <span>Author</span>
-                      </a>
-                      <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1 mt-3">
-                        Account
-                      </h6>
-                      <a href="/sign-in.html" class="dropdown-item border-radius-md">
+                      <a href="{% url 'authentication:sign-up' %}" class="dropdown-item border-radius-md">
                         <span>Sign In</span>
                       </a>
                     </div>

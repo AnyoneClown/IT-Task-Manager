@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.urls import reverse
 
 
 class Worker(AbstractUser):
@@ -50,3 +51,9 @@ class Task(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("task-manager:task-detail", kwargs={"pk": self.pk})
+
+    def get_priority_display(self) -> str:
+        return dict(self.PRIORITY_CHOICES).get(self.priority, self.priority)

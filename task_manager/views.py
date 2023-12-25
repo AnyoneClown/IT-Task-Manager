@@ -26,3 +26,9 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
     context_object_name = "task_list"
     template_name = "task_manager/task_list.html"
+
+
+class WorkerListView(LoginRequiredMixin, generic.ListView):
+    model = get_user_model()
+    context_object_name = "worker_list"
+    template_name = "task_manager/worker_list.html"

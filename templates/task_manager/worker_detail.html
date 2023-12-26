@@ -58,10 +58,10 @@
               </td>
               {% if user.id == worker.id %}
                 <td>
-                  <a href="{% url 'task-manager:worker-update' pk=worker.id %}">Update</a>
+                  <button type="button" onclick="window.location.href='{% url 'task-manager:worker-update' pk=worker.id %}'" class="btn bg-gradient-secondary btn-lg">Update</button>
                 </td>
                 <td>
-                  delete
+                  <button type="button" onclick="window.location.href='{% url 'task-manager:worker-delete' pk=worker.id %}'" class="btn bg-gradient-primary btn-lg">Delete</button>
                 </td>
                 <td>
                   change passwordd
@@ -69,6 +69,9 @@
               {% endif %}
           </tr>
         </table>
+        <div class="text-center">
+            <button type="button" onclick="window.location.href='{% url 'task-manager:worker-list' %}'" class="btn btn-lg bg-gradient-faded-white btn-lg w-100 mt-4 mb-0">Back</button>
+          </div>
       </div>
     </div>
   </div>

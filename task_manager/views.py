@@ -64,5 +64,10 @@ class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
 
 class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = get_user_model()
-    fields = "__all__"
-    success_url = reverse_lazy("task-manager:worker-list")
+    success_url = reverse_lazy("authentication:sign-up")
+
+    def dispatch(self, request, *args, **kwargs):
+        user = request.user
+        if user.is_authenticated and user.id != int(kwargs['pk']):
+            return render(request, "task_manager/page-403.html")
+        return super(WorkerDeleteView, self).dispatch(request, *args, **kwargs)

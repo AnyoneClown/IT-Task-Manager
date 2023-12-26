@@ -40,8 +40,13 @@
                 <td>
                   {{ worker.id }}
                 </td>
+
                 <td class="text-bold">
-                  <a href="{{ worker.get_absolute_url }}">{{ worker.username }}</a>
+                  {% if user.id == worker.id %}
+                    <a href="{{ worker.get_absolute_url }}">{{ worker.username }} | You |</a>
+                  {% else %}
+                    <a href="{{ worker.get_absolute_url }}">{{ worker.username }}</a>
+                  {% endif %}
                 </td>
                 <td>
                   {{ worker.position }}

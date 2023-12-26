@@ -1,11 +1,13 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest, HttpResponse, HttpResponseForbidden
 from django.shortcuts import render
+from django.urls import reverse_lazy, reverse
 from django.views import generic
 
 from task_manager.models import Task
+from task_manager.forms import WorkerUpdateForm
 
 
 @login_required
@@ -46,3 +48,21 @@ class WorkerListView(LoginRequiredMixin, generic.ListView):
 
 class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
     model = get_user_model()
+
+
+class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = get_user_model()
+    form_class = WorkerUpdateForm
+    success_url = reverse_lazy("task-manager:worker-list")
+
+    def dispatch(self, request, *args, **kwargs):
+        user = request.user
+        if user.is_authenticated and user.id != int(kwargs['pk']):
+            return render(request, "task_manager/page-403.html")
+        return super(WorkerUpdateView, self).dispatch(request, *args, **kwargs)
+
+
+class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = get_user_model()
+    fields = "__all__"
+    success_url = reverse_lazy("task-manager:worker-list")

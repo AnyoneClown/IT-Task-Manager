@@ -17,7 +17,7 @@
       <div class="row">
         <div class="col-md-8 mx-auto">
           <div class="text-center">
-            <h1 class="text-white">{{ worker.username }}</h1>
+            <h1 class="text-white">Worker: {{ worker.username }}</h1>
           </div>
         </div>
       </div>
@@ -34,7 +34,11 @@
             <th>Last name</th>
             <th>Email</th>
             <th>Position</th>
-            <th></th>
+            {% if user.id == worker.id %}
+              <th>Update</th>
+              <th>Delete</th>
+              <th>Change password</th>
+            {% endif %}
           </tr>
             <tr>
               <td>
@@ -52,7 +56,17 @@
               <td>
                 {{ worker.position }}
               </td>
-
+              {% if user.id == worker.id %}
+                <td>
+                  <a href="{% url 'task-manager:worker-update' pk=worker.id %}">Update</a>
+                </td>
+                <td>
+                  delete
+                </td>
+                <td>
+                  change passwordd
+                </td>
+              {% endif %}
           </tr>
         </table>
       </div>

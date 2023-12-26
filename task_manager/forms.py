@@ -50,13 +50,3 @@ class WorkerUpdateForm(forms.ModelForm):
     class Meta:
         model = get_user_model()
         fields = ("username", "email", "first_name", "last_name", "position")
-    #
-    # def save(self, commit=True):
-    #     user = super(WorkerUpdateForm, self).save(commit=False)
-    #     password = self.cleaned_data["password"]
-    #
-    #     if password:
-    #         user.set_password(password)
-    #     if commit:
-    #         user.save()
-    #     return user

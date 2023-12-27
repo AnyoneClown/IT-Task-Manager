@@ -126,4 +126,5 @@ class TaskCreateForm(forms.ModelForm):
         task.is_completed = False
         if commit:
             task.save()
+            self.save_m2m()
         return task

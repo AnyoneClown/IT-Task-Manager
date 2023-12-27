@@ -22,28 +22,19 @@
                 <li class="nav-item dropdown dropdown-hover mx-2">
                   <a class="nav-link ps-2 d-flex cursor-pointer align-items-center" id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="material-icons opacity-6 me-2 text-md">dashboard</i>
-                    Pages
+                    Profile
                     <img src="{{ ASSETS_ROOT }}/img/down-arrow-dark.svg" alt="down-arrow" class="arrow ms-auto ms-md-2">
                   </a>
                   <div class="dropdown-menu dropdown-menu-animation ms-n3 dropdown-md p-3 border-radius-xl mt-0 mt-lg-3" aria-labelledby="dropdownMenuPages">
                     <div class="d-none d-lg-block">
-                      <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1">
-                        Main pages
-                      </h6>
-                      <a href="{% url 'task-manager:task-list' %}" class="dropdown-item border-radius-md">
-                        <span>Tasks</span>
-                      </a>
-                      <a href="{% url 'task-manager:worker-list' %}" class="dropdown-item border-radius-md">
-                        <span>Workers</span>
-                      </a>
                       <h6 class="dropdown-header text-dark font-weight-bolder d-flex align-items-center px-1 mt-3">
                         Account
                       </h6>
-                      <a href="{% url 'authentication:sign-up' %}" class="dropdown-item border-radius-md">
-                        <span>Sign In</span>
-                      </a>
                       <a href="{{ user.get_absolute_url }}" class="dropdown-item border-radius-md">
                         <span>Profile</span>
+                      </a>
+                      <a href="{% url 'task-manager:my-task-list' %}" class="dropdown-item border-radius-md">
+                        <span>My tasks</span>
                       </a>
                     </div>
                   </div>

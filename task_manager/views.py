@@ -31,6 +31,16 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
     template_name = "task_manager/task_list.html"
 
 
+class MyTaskListView(LoginRequiredMixin, generic.ListView):
+    model = Task
+    paginate_by = 5
+    context_object_name = "task_list"
+    template_name = "task_manager/my_task_list.html"
+
+    def get_queryset(self):
+        return Task.objects.filter(assignees=self.request.user).prefetch_related("assignees")
+
+
 class TaskDetailView(LoginRequiredMixin, generic.DetailView):
     model = Task
     queryset = Task.objects.all().select_related("task_type").prefetch_related("assignees")

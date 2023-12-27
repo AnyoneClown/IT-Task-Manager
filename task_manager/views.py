@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest, HttpResponse, HttpResponseForbidden
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views import generic
 
@@ -31,14 +31,24 @@ class TaskListView(LoginRequiredMixin, generic.ListView):
     template_name = "task_manager/task_list.html"
 
 
-class MyTaskListView(LoginRequiredMixin, generic.ListView):
+class MyCompletedTaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
     paginate_by = 5
     context_object_name = "task_list"
-    template_name = "task_manager/my_task_list.html"
+    template_name = "task_manager/my_completed_task_list.html"
 
     def get_queryset(self):
-        return Task.objects.filter(assignees=self.request.user).prefetch_related("assignees")
+        return Task.objects.filter(assignees=self.request.user, is_completed=True).prefetch_related("assignees")
+
+
+class MyInProgressTaskListView(LoginRequiredMixin, generic.ListView):
+    model = Task
+    paginate_by = 5
+    context_object_name = "task_list"
+    template_name = "task_manager/my_in_progress_task_list.html"
+
+    def get_queryset(self):
+        return Task.objects.filter(assignees=self.request.user, is_completed=False).prefetch_related("assignees")
 
 
 class TaskDetailView(LoginRequiredMixin, generic.DetailView):
@@ -89,3 +99,15 @@ class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
         if user.is_authenticated and user.id != int(kwargs['pk']):
             return render(request, "task_manager/page-403.html")
         return super(WorkerDeleteView, self).dispatch(request, *args, **kwargs)
+
+
+@login_required
+def complete_task(request, pk):
+    task = get_object_or_404(Task, pk=pk)
+
+    if task.is_completed:
+        task.is_completed = False
+    else:
+        task.is_completed = True
+    task.save()
+    return redirect(reverse_lazy("task-manager:task-detail", args=[pk]))

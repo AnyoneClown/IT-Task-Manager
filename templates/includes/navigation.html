@@ -33,8 +33,11 @@
                       <a href="{{ user.get_absolute_url }}" class="dropdown-item border-radius-md">
                         <span>Profile</span>
                       </a>
-                      <a href="{% url 'task-manager:my-task-list' %}" class="dropdown-item border-radius-md">
-                        <span>My tasks</span>
+                      <a href="{% url 'task-manager:my-completed-task-list' %}" class="dropdown-item border-radius-md">
+                        <span>Completed tasks</span>
+                      </a>
+                      <a href="{% url 'task-manager:my-in-progress-task-list' %}" class="dropdown-item border-radius-md">
+                        <span>In progress tasks</span>
                       </a>
                     </div>
                   </div>

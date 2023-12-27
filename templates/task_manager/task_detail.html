@@ -33,8 +33,15 @@
             <th>Deadline</th>
             <th>Priority</th>
             <th>Task type</th>
-            <th>Completed</th>
             <th>Assignees</th>
+            <th>Completed</th>
+            {% if user in task.assignees.all %}
+              {% if task.is_completed %}
+                <th>Reopen task</th>
+              {% else %}
+                <th>Complete task</th>
+              {% endif %}
+            {% endif %}
           </tr>
             <tr>
               <td>
@@ -50,10 +57,23 @@
                 {{ task.task_type }}
               </td>
               <td>
-                {{ task.is_completed }}
+                {{ assignees }}
               </td>
               <td>
-                {{ assignees }}
+                {% if task.is_completed %}
+                  Completed
+                {% else %}
+                  In progress...
+                {% endif %}
+              </td>
+              <td>
+                {% if user in task.assignees.all %}
+                  {% if task.is_completed %}
+                    <button type="button" onclick="window.location.href='{% url 'task-manager:toggle-task-complete' pk=task.id %}'" class="btn bg-gradient-primary btn-sm">Reopen</button>
+                  {% else %}
+                    <button type="button" onclick="window.location.href='{% url 'task-manager:toggle-task-complete' pk=task.id %}'" class="btn bg-gradient-primary btn-sm">Complete</button>
+                  {% endif %}
+                {% endif %}
               </td>
             </tr>
           </table>

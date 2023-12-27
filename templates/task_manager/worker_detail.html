@@ -58,13 +58,13 @@
               </td>
               {% if user.id == worker.id %}
                 <td>
-                  <button type="button" onclick="window.location.href='{% url 'task-manager:worker-update' pk=worker.id %}'" class="btn bg-gradient-secondary btn-lg">Update</button>
+                  <button type="button" onclick="window.location.href='{% url 'task-manager:worker-update' pk=worker.id %}'" class="btn bg-gradient-secondary btn-sm">Update</button>
                 </td>
                 <td>
-                  <button type="button" onclick="window.location.href='{% url 'authentication:password_change' %}'" class="btn bg-gradient-secondary btn-lg">Change password</button>
+                  <button type="button" onclick="window.location.href='{% url 'authentication:password_change' %}'" class="btn bg-gradient-secondary btn-sm">Change password</button>
                 </td>
                 <td>
-                  <button type="button" onclick="window.location.href='{% url 'task-manager:worker-delete' pk=worker.id %}'" class="btn bg-gradient-primary btn-lg">Delete</button>
+                  <button type="button" onclick="window.location.href='{% url 'task-manager:worker-delete' pk=worker.id %}'" class="btn bg-gradient-primary btn-sm">Delete</button>
                 </td>
               {% endif %}
           </tr>

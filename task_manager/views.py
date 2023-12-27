@@ -7,7 +7,7 @@ from django.urls import reverse_lazy, reverse
 from django.views import generic
 
 from task_manager.models import Task
-from task_manager.forms import WorkerUpdateForm
+from task_manager.forms import WorkerUpdateForm, TaskCreateForm
 
 
 @login_required
@@ -26,6 +26,7 @@ def index(request: HttpRequest) -> HttpResponse:
 
 class TaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
+    paginate_by = 5
     context_object_name = "task_list"
     template_name = "task_manager/task_list.html"
 
@@ -40,8 +41,15 @@ class TaskDetailView(LoginRequiredMixin, generic.DetailView):
         return context
 
 
+class TaskCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Task
+    form_class = TaskCreateForm
+    success_url = reverse_lazy("task-manager:task-list")
+
+
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = get_user_model()
+    paginate_by = 5
     context_object_name = "worker_list"
     template_name = "task_manager/worker_list.html"
 

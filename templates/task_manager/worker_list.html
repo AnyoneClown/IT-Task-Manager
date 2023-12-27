@@ -1,4 +1,5 @@
 {% extends "layouts/base.html" %}
+{% load crispy_forms_filters %}
 
 {% block title %} Template Page {% endblock %}
 
@@ -26,8 +27,13 @@
   <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
     <div class="container">
       <div class="section text-center">
-        <h2 class="title">Worker list</h2>
-        {% if worker_list %}
+        <form method="get" action="" class="form-inline">
+          <div class="input-group input-group-outline mb-3">
+            {{ search_form.search_query|as_crispy_field }}
+            <input class="btn btn-secondary" type="submit" value="🔎">
+          </div>
+        </form>
+        {% if object_list %}
           <table class="table">
             <tr>
               <th>ID</th>
@@ -35,7 +41,7 @@
               <th>Position</th>
             </tr>
 
-            {% for worker in worker_list %}
+            {% for worker in object_list %}
               <tr>
                 <td>
                   {{ worker.id }}

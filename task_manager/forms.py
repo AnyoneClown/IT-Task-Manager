@@ -1,6 +1,5 @@
 from django import forms
 from django.contrib.auth import get_user_model
-from django.forms import CheckboxSelectMultiple, SplitDateTimeWidget
 
 from task_manager.models import Position, Task, TaskType
 
@@ -128,3 +127,81 @@ class TaskCreateForm(forms.ModelForm):
             task.save()
             self.save_m2m()
         return task
+
+
+class TaskTypeUpdateForm(forms.ModelForm):
+    name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Name",
+                "class": "form-control"
+            }
+        )
+    )
+
+    class Meta:
+        model = TaskType
+        fields = ["name"]
+
+
+class TaskTypeCreateForm(forms.ModelForm):
+    name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Name",
+                "class": "form-control"
+            }
+        )
+    )
+
+    class Meta:
+        model = TaskType
+        fields = ["name", ]
+
+
+class PositionUpdateForm(forms.ModelForm):
+    name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Name",
+                "class": "form-control"
+            }
+        )
+    )
+
+    class Meta:
+        model = Position
+        fields = ["name", ]
+
+
+class PositionCreateForm(forms.ModelForm):
+    name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Name",
+                "class": "form-control"
+            }
+        )
+    )
+
+    class Meta:
+        model = Position
+        fields = ["name", ]
+
+
+class BaseSearchForm(forms.Form):
+    search_word = "name"
+    search_query = forms.CharField(
+        label=False,
+        max_length=255,
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": f"Search by {search_word}",
+            }
+        )
+    )
+
+
+class WorkerSearchForm(BaseSearchForm):
+    search_word = "username"

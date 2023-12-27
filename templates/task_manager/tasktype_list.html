@@ -18,7 +18,7 @@
       <div class="row">
         <div class="col-md-8 mx-auto">
           <div class="text-center">
-            <h1 class="text-white">Overall tasks</h1>
+            <h1 class="text-white">Task types</h1>
           </div>
         </div>
       </div>
@@ -38,38 +38,30 @@
             <tr>
               <th>ID</th>
               <th>Name</th>
-              <th>Deadline</th>
-              <th>Priority</th>
-              <th>Task type</th>
-              <th>Completed</th>
+              <th>Update</th>
+              <th>Delete</th>
             </tr>
 
-            {% for task in object_list %}
+            {% for task_type in object_list %}
               <tr>
                 <td>
-                  {{ task.id }}
-                </td>
-                <td class="text-bold">
-                  <a href="{{ task.get_absolute_url}}">{{ task.name }}</a>
+                  {{ task_type.id }}
                 </td>
                 <td>
-                  {{ task.deadline }}
+                  {{ task_type.name }}
                 </td>
                 <td>
-                  {{ task.get_priority_display }}
+                  <button type="button" onclick="window.location.href='{% url 'task-manager:task-type-update' pk=task_type.id %}'" class="btn bg-gradient-secondary btn-sm">Update</button>
                 </td>
                 <td>
-                  {{ task.task_type }}
-                </td>
-                <td>
-                  {{ task.is_completed }}
+                  <button type="button" onclick="window.location.href='{% url 'task-manager:task-type-delete' pk=task_type.id %}'" class="btn bg-gradient-primary btn-sm">Delete</button>
                 </td>
               </tr>
             {% endfor %}
             </table>
 
           {% else %}
-              <p>There are no tasks yet.</p>
+              <p>There are no task types yet.</p>
           {% endif %}
       </div>
     </div>

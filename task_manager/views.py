@@ -7,8 +7,16 @@ from django.urls import reverse_lazy, reverse
 from django.views import generic
 
 from task_manager.models import Task, TaskType, Position, Worker
-from task_manager.forms import WorkerUpdateForm, TaskCreateForm, TaskTypeUpdateForm, TaskTypeCreateForm, \
-    PositionUpdateForm, PositionCreateForm, BaseSearchForm, WorkerSearchForm
+from task_manager.forms import (
+    WorkerUpdateForm,
+    TaskCreateForm,
+    TaskTypeUpdateForm,
+    TaskTypeCreateForm,
+    PositionUpdateForm,
+    PositionCreateForm,
+    BaseSearchForm,
+    WorkerSearchForm,
+)
 
 
 @login_required
@@ -34,11 +42,12 @@ class BaseSearchListView(generic.ListView):
 
     Attributes:
         paginate_by (int): Number of items per page for pagination.
-        context_object_name (str): Name of the variable to use in the template for the list of objects.
+        context_object_name (str): Variable to use in the template for the list of objects.
         search_form_class (Form): Form class responsible for handling search queries.
         queryset (QuerySet): The base queryset for the list view.
         search_field (str): The field to use for searching.
     """
+
     paginate_by = 5
     context_object_name = "object_list"
     search_form_class = None
@@ -77,7 +86,9 @@ class MyCompletedTaskListView(LoginRequiredMixin, generic.ListView):
     template_name = "task_manager/my_completed_task_list.html"
 
     def get_queryset(self):
-        return Task.objects.filter(assignees=self.request.user, is_completed=True).prefetch_related("assignees")
+        return Task.objects.filter(
+            assignees=self.request.user, is_completed=True
+        ).prefetch_related("assignees")
 
 
 class MyInProgressTaskListView(LoginRequiredMixin, generic.ListView):
@@ -87,16 +98,22 @@ class MyInProgressTaskListView(LoginRequiredMixin, generic.ListView):
     template_name = "task_manager/my_in_progress_task_list.html"
 
     def get_queryset(self):
-        return Task.objects.filter(assignees=self.request.user, is_completed=False).prefetch_related("assignees")
+        return Task.objects.filter(
+            assignees=self.request.user, is_completed=False
+        ).prefetch_related("assignees")
 
 
 class TaskDetailView(LoginRequiredMixin, generic.DetailView):
     model = Task
-    queryset = Task.objects.all().select_related("task_type").prefetch_related("assignees")
+    queryset = (
+        Task.objects.all().select_related("task_type").prefetch_related("assignees")
+    )
 
     def get_context_data(self, **kwargs):
         context = super(TaskDetailView, self).get_context_data(**kwargs)
-        context["assignees"] = ", ".join(assignee.username for assignee in self.object.assignees.all())
+        context["assignees"] = ", ".join(
+            assignee.username for assignee in self.object.assignees.all()
+        )
         return context
 
 
@@ -125,7 +142,7 @@ class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
 
     def dispatch(self, request, *args, **kwargs):
         user = request.user
-        if user.is_authenticated and user.id != int(kwargs['pk']):
+        if user.is_authenticated and user.id != int(kwargs["pk"]):
             return render(request, "task_manager/page-403.html")
         return super(WorkerUpdateView, self).dispatch(request, *args, **kwargs)
 
@@ -136,7 +153,7 @@ class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
 
     def dispatch(self, request, *args, **kwargs):
         user = request.user
-        if user.is_authenticated and user.id != int(kwargs['pk']):
+        if user.is_authenticated and user.id != int(kwargs["pk"]):
             return render(request, "task_manager/page-403.html")
         return super(WorkerDeleteView, self).dispatch(request, *args, **kwargs)
 

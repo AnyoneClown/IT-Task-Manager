@@ -94,21 +94,29 @@ class PositionForm(forms.ModelForm):
 
 
 class BaseSearchForm(forms.Form):
-    search_word = "name"
     search_query = forms.CharField(
         label=False,
         max_length=255,
         required=False,
         widget=forms.TextInput(
             attrs={
-                "placeholder": f"Search by {search_word}",
+                "placeholder": "Search by name",
             }
         ),
     )
 
 
-class WorkerSearchForm(BaseSearchForm):
-    search_word = "username"
+class WorkerSearchForm(forms.Form):
+    search_query = forms.CharField(
+        label=False,
+        max_length=255,
+        required=False,
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Search by username",
+            }
+        ),
+    )
 
 
 class WorkerUpdateForm(forms.ModelForm):

@@ -26,7 +26,11 @@
   <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
     <div class="container">
       <div class="section text-center">
-        <h2 class="title">Worker info</h2>
+        {% if user.id == worker.id %}
+          <h2 class="title">Your profile</h2>
+        {% else %}
+          <h2 class="title">Worker info</h2>
+        {% endif %}
         <table class="table">
           <tr>
             <th>ID</th>

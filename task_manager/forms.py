@@ -4,38 +4,7 @@ from django.contrib.auth import get_user_model
 from task_manager.models import Position, Task, TaskType
 
 
-class WorkerUpdateForm(forms.ModelForm):
-    username = forms.CharField(
-        widget=forms.TextInput(
-            attrs={"placeholder": "Username", "class": "form-control"}
-        )
-    )
-    email = forms.EmailField(
-        widget=forms.EmailInput(attrs={"placeholder": "Email", "class": "form-control"})
-    )
-    first_name = forms.CharField(
-        widget=forms.TextInput(
-            attrs={"placeholder": "First name", "class": "form-control"}
-        )
-    )
-    last_name = forms.CharField(
-        widget=forms.TextInput(
-            attrs={"placeholder": "Last name", "class": "form-control"}
-        )
-    )
-    position = forms.ModelChoiceField(
-        queryset=Position.objects.all(),
-        widget=forms.Select(
-            attrs={"placeholder": "Last name", "class": "form-control"}
-        ),
-    )
-
-    class Meta:
-        model = get_user_model()
-        fields = ("username", "email", "first_name", "last_name", "position")
-
-
-class TaskCreateForm(forms.ModelForm):
+class TaskForm(forms.ModelForm):
     PRIORITY_CHOICES = (
         ("UR", "Urgent"),
         ("HG", "High"),
@@ -92,7 +61,7 @@ class TaskCreateForm(forms.ModelForm):
         ]
 
     def save(self, commit=True):
-        task = super(TaskCreateForm, self).save(commit=False)
+        task = super(TaskForm, self).save(commit=False)
         task.is_completed = False
         if commit:
             task.save()
@@ -100,17 +69,7 @@ class TaskCreateForm(forms.ModelForm):
         return task
 
 
-class TaskTypeUpdateForm(forms.ModelForm):
-    name = forms.CharField(
-        widget=forms.TextInput(attrs={"placeholder": "Name", "class": "form-control"})
-    )
-
-    class Meta:
-        model = TaskType
-        fields = ["name"]
-
-
-class TaskTypeCreateForm(forms.ModelForm):
+class TaskTypeForm(forms.ModelForm):
     name = forms.CharField(
         widget=forms.TextInput(attrs={"placeholder": "Name", "class": "form-control"})
     )
@@ -122,19 +81,7 @@ class TaskTypeCreateForm(forms.ModelForm):
         ]
 
 
-class PositionUpdateForm(forms.ModelForm):
-    name = forms.CharField(
-        widget=forms.TextInput(attrs={"placeholder": "Name", "class": "form-control"})
-    )
-
-    class Meta:
-        model = Position
-        fields = [
-            "name",
-        ]
-
-
-class PositionCreateForm(forms.ModelForm):
+class PositionForm(forms.ModelForm):
     name = forms.CharField(
         widget=forms.TextInput(attrs={"placeholder": "Name", "class": "form-control"})
     )
@@ -162,3 +109,34 @@ class BaseSearchForm(forms.Form):
 
 class WorkerSearchForm(BaseSearchForm):
     search_word = "username"
+
+
+class WorkerUpdateForm(forms.ModelForm):
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={"placeholder": "Username", "class": "form-control"}
+        )
+    )
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={"placeholder": "Email", "class": "form-control"})
+    )
+    first_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={"placeholder": "First name", "class": "form-control"}
+        )
+    )
+    last_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={"placeholder": "Last name", "class": "form-control"}
+        )
+    )
+    position = forms.ModelChoiceField(
+        queryset=Position.objects.all(),
+        widget=forms.Select(
+            attrs={"placeholder": "Last name", "class": "form-control"}
+        ),
+    )
+
+    class Meta:
+        model = get_user_model()
+        fields = ("username", "email", "first_name", "last_name", "position")

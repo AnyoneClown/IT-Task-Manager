@@ -9,11 +9,9 @@ from django.views import generic
 from task_manager.models import Task, TaskType, Position, Worker
 from task_manager.forms import (
     WorkerUpdateForm,
-    TaskCreateForm,
-    TaskTypeUpdateForm,
-    TaskTypeCreateForm,
-    PositionUpdateForm,
-    PositionCreateForm,
+    TaskForm,
+    TaskTypeForm,
+    PositionForm,
     BaseSearchForm,
     WorkerSearchForm,
 )
@@ -73,7 +71,7 @@ class BaseSearchListView(generic.ListView):
 
 class TaskListView(LoginRequiredMixin, BaseSearchListView):
     model = Task
-    template_name = "task_manager/task_list.html"
+    template_name = "task_manager/task/task_list.html"
     queryset = Task.objects.select_related("task_type").prefetch_related("assignees")
     search_form_class = BaseSearchForm
     search_field = "name"
@@ -83,7 +81,7 @@ class MyCompletedTaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
     paginate_by = 5
     context_object_name = "task_list"
-    template_name = "task_manager/my_completed_task_list.html"
+    template_name = "task_manager/task/my_completed_task_list.html"
 
     def get_queryset(self):
         return Task.objects.filter(
@@ -95,7 +93,7 @@ class MyInProgressTaskListView(LoginRequiredMixin, generic.ListView):
     model = Task
     paginate_by = 5
     context_object_name = "task_list"
-    template_name = "task_manager/my_in_progress_task_list.html"
+    template_name = "task_manager/task/my_in_progress_task_list.html"
 
     def get_queryset(self):
         return Task.objects.filter(
@@ -105,6 +103,7 @@ class MyInProgressTaskListView(LoginRequiredMixin, generic.ListView):
 
 class TaskDetailView(LoginRequiredMixin, generic.DetailView):
     model = Task
+    template_name = "task_manager/task/task_detail.html"
     queryset = (
         Task.objects.all().select_related("task_type").prefetch_related("assignees")
     )
@@ -119,13 +118,39 @@ class TaskDetailView(LoginRequiredMixin, generic.DetailView):
 
 class TaskCreateView(LoginRequiredMixin, generic.CreateView):
     model = Task
-    form_class = TaskCreateForm
+    template_name = "task_manager/task/task_form.html"
+    form_class = TaskForm
     success_url = reverse_lazy("task-manager:task-list")
+
+
+class TaskDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Task
+    template_name = "task_manager/task/task_confirm_delete.html"
+    success_url = reverse_lazy("task-manager:task-list")
+
+    def dispatch(self, request, *args, **kwargs):
+        task = get_object_or_404(Task, pk=kwargs["pk"])
+        if request.user not in task.assignees.all():
+            return render(request, "task_manager/page-403.html")
+        return super(TaskDeleteView, self).dispatch(request, *args, **kwargs)
+
+
+class TaskUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Task
+    template_name = "task_manager/task/task_form.html"
+    form_class = TaskForm
+    success_url = reverse_lazy("task-manager:task-list")
+
+    def dispatch(self, request, *args, **kwargs):
+        task = get_object_or_404(Task, pk=kwargs["pk"])
+        if request.user not in task.assignees.all():
+            return render(request, "task_manager/page-403.html")
+        return super(TaskUpdateView, self).dispatch(request, *args, **kwargs)
 
 
 class WorkerListView(LoginRequiredMixin, BaseSearchListView):
     model = Worker
-    template_name = "task_manager/worker_list.html"
+    template_name = "task_manager/worker/worker_list.html"
     queryset = Worker.objects.all()
     search_form_class = WorkerSearchForm
     search_field = "username"
@@ -133,10 +158,12 @@ class WorkerListView(LoginRequiredMixin, BaseSearchListView):
 
 class WorkerDetailView(LoginRequiredMixin, generic.DetailView):
     model = get_user_model()
+    template_name = "task_manager/worker/worker_detail.html"
 
 
 class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = get_user_model()
+    template_name = "task_manager/worker/worker_form.html"
     form_class = WorkerUpdateForm
     success_url = reverse_lazy("task-manager:worker-list")
 
@@ -149,6 +176,7 @@ class WorkerUpdateView(LoginRequiredMixin, generic.UpdateView):
 
 class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = get_user_model()
+    template_name = "task_manager/worker/worker_confirm_delete.html"
     success_url = reverse_lazy("authentication:sign-up")
 
     def dispatch(self, request, *args, **kwargs):
@@ -160,14 +188,15 @@ class WorkerDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class TaskTypeListView(LoginRequiredMixin, BaseSearchListView):
     model = TaskType
-    template_name = "task_manager/tasktype_list.html"
+    template_name = "task_manager/task_type/task_type_list.html"
     queryset = TaskType.objects.filter()
     search_form_class = BaseSearchForm
 
 
 class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
     model = TaskType
-    form_class = TaskTypeCreateForm
+    template_name = "task_manager/task_type/task_type_form.html"
+    form_class = TaskTypeForm
     success_url = reverse_lazy("task-manager:task-type-list")
 
 
@@ -178,8 +207,8 @@ class TaskTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class TaskTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = TaskType
-    form_class = TaskTypeUpdateForm
-    template_name = "task_manager/tasktype_update_form.html"
+    form_class = TaskTypeForm
+    template_name = "task_manager/task_type/task_type_form.html"
     success_url = reverse_lazy("task-manager:task-type-list")
 
 
@@ -192,7 +221,7 @@ class PositionListView(LoginRequiredMixin, BaseSearchListView):
 
 class PositionCreateView(LoginRequiredMixin, generic.CreateView):
     model = Position
-    form_class = PositionCreateForm
+    form_class = PositionForm
     template_name = "task_manager/position/position_form.html"
     success_url = reverse_lazy("task-manager:position-list")
 
@@ -205,8 +234,8 @@ class PositionDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class PositionUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Position
-    form_class = PositionUpdateForm
-    template_name = "task_manager/position/position_update_form.html"
+    form_class = PositionForm
+    template_name = "task_manager/position/position_form.html"
     success_url = reverse_lazy("task-manager:position-list")
 
 

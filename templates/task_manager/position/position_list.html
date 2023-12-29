@@ -1,0 +1,73 @@
+{% extends "layouts/base.html" %}
+{% load crispy_forms_filters %}
+
+{% block title %} Template Page {% endblock %}
+
+{% block body_class %} index-page {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+  {% include 'includes/navigation.html' %}
+
+  <div class="page-header min-vh-80" style="background-image: url('https://images.unsplash.com/photo-1630752708689-02c8636b9141?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2490&q=80')">
+    <span class="mask bg-gradient-dark opacity-6"></span>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <div class="text-center">
+            <h1 class="text-white">Positions</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card card-body shadow-xl mx-3 mx-md-4 mt-n6">
+    <div class="container">
+      <div class="section text-center">
+        <form method="get" action="" class="form-inline">
+          <div class="input-group input-group-outline mb-3">
+            {{ search_form.search_query|as_crispy_field }}
+            <input class="btn btn-secondary" type="submit" value="🔎">
+          </div>
+        </form>
+        {% if object_list %}
+          <table class="table">
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Update</th>
+              <th>Delete</th>
+            </tr>
+
+            {% for position in object_list %}
+              <tr>
+                <td>
+                  {{ position.id }}
+                </td>
+                <td>
+                  {{ position.name }}
+                </td>
+                <td>
+                  <button type="button" onclick="window.location.href='{% url 'task-manager:position-update' pk=position.id %}'" class="btn bg-gradient-secondary btn-sm">Update</button>
+                </td>
+                <td>
+                  <button type="button" onclick="window.location.href='{% url 'task-manager:position-delete' pk=position.id %}'" class="btn bg-gradient-primary btn-sm">Delete</button>
+                </td>
+              </tr>
+            {% endfor %}
+            </table>
+
+          {% else %}
+              <p>There are no positions like this.</p>
+          {% endif %}
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

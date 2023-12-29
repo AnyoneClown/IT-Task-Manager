@@ -4,7 +4,7 @@ Welcome to the Task Manager project! This web application provides a platform fo
 
 ## Deployed Website
 Explore the deployed Task Manager web application on [Render](https://it-task-manager-5z1u.onrender.com/)! You can use test profile for this or create your own on registration page! 
-### Username: Testing | Password:
+### Username: Testing | Password: test12345
 
 ## User Features:
 

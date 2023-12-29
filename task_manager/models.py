@@ -5,7 +5,7 @@ from django.urls import reverse
 
 
 class Worker(AbstractUser):
-    position = models.ForeignKey("Position", on_delete=models.CASCADE)
+    position = models.ForeignKey("Position", on_delete=models.CASCADE, null=True)
 
     class Meta:
         verbose_name = "worker"

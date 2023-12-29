@@ -2,6 +2,9 @@
 
 Welcome to the Task Manager project! This web application provides a platform for managing tasks and user accounts. Below is an overview of the implemented features:
 
+## Deployed Website
+Explore the deployed Task Manager web application on [Render](https://it-task-manager-5z1u.onrender.com/)! Happy task managing!
+
 ## User Features:
 
 ### Registration

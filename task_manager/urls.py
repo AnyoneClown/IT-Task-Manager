@@ -22,9 +22,11 @@ from .views import (
     PositionCreateView,
     TaskDeleteView,
     TaskUpdateView,
+    rick_roll,
 )
 urlpatterns = [
     path("", index, name="index"),
+    path("rick_roll/", rick_roll, name="rick-roll"),
     path("tasks/", TaskListView.as_view(), name="task-list"),
     path(
         "my_completed_tasks/",

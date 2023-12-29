@@ -249,3 +249,7 @@ def complete_task(request, pk):
         task.is_completed = True
     task.save()
     return redirect(reverse_lazy("task-manager:task-detail", args=[pk]))
+
+
+def rick_roll(request):
+    return render(request, "task_manager/rick_roll.html")

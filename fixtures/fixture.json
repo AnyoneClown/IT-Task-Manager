@@ -1,0 +1,719 @@
+[
+  {
+    "model": "task_manager.position",
+    "pk": 1,
+    "fields": {
+      "name": "Developer"
+    }
+  },
+  {
+    "model": "task_manager.position",
+    "pk": 2,
+    "fields": {
+      "name": "Manager"
+    }
+  },
+  {
+    "model": "task_manager.position",
+    "pk": 3,
+    "fields": {
+      "name": "QA"
+    }
+  },
+  {
+    "model": "task_manager.position",
+    "pk": 4,
+    "fields": {
+      "name": "DevOps"
+    }
+  },
+  {
+    "model": "task_manager.tasktype",
+    "pk": 1,
+    "fields": {
+      "name": "Bug"
+    }
+  },
+  {
+    "model": "task_manager.tasktype",
+    "pk": 2,
+    "fields": {
+      "name": "Feature"
+    }
+  },
+  {
+    "model": "task_manager.tasktype",
+    "pk": 3,
+    "fields": {
+      "name": "Improvement"
+    }
+  },
+  {
+    "model": "task_manager.tasktype",
+    "pk": 4,
+    "fields": {
+      "name": "Research"
+    }
+  },
+  {
+    "model": "task_manager.worker",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "user0",
+      "first_name": "First0",
+      "last_name": "Last0",
+      "email": "user0@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-06-01T12:00:00Z",
+      "position": 4,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "task_manager.worker",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "user1",
+      "first_name": "First1",
+      "last_name": "Last1",
+      "email": "user1@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-06-01T12:00:00Z",
+      "position": 1,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "task_manager.worker",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "user2",
+      "first_name": "First2",
+      "last_name": "Last2",
+      "email": "user2@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-06-01T12:00:00Z",
+      "position": 2,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "task_manager.worker",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "user3",
+      "first_name": "First3",
+      "last_name": "Last3",
+      "email": "user3@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-06-01T12:00:00Z",
+      "position": 3,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "task_manager.worker",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "user4",
+      "first_name": "First4",
+      "last_name": "Last4",
+      "email": "user4@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-06-01T12:00:00Z",
+      "position": 4,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "task_manager.worker",
+    "pk": 6,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "user5",
+      "first_name": "First5",
+      "last_name": "Last5",
+      "email": "user5@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-06-01T12:00:00Z",
+      "position": 3,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "task_manager.worker",
+    "pk": 7,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "user6",
+      "first_name": "First6",
+      "last_name": "Last6",
+      "email": "user6@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-06-01T12:00:00Z",
+      "position": 4,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "task_manager.worker",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "user7",
+      "first_name": "First7",
+      "last_name": "Last7",
+      "email": "user7@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-06-01T12:00:00Z",
+      "position": 2,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "task_manager.worker",
+    "pk": 9,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "user8",
+      "first_name": "First8",
+      "last_name": "Last8",
+      "email": "user8@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-06-01T12:00:00Z",
+      "position": 3,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "task_manager.worker",
+    "pk": 10,
+    "fields": {
+      "password": "pbkdf2_sha256$260000$example$hash",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "user9",
+      "first_name": "First9",
+      "last_name": "Last9",
+      "email": "user9@example.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2024-06-01T12:00:00Z",
+      "position": 4,
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 1,
+    "fields": {
+      "name": "Task 0",
+      "description": "Description for task 0",
+      "deadline": "2024-06-07T00:00:00Z",
+      "is_completed": true,
+      "priority": "UR",
+      "task_type": 3,
+      "assignees": [
+        9,
+        1
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 2,
+    "fields": {
+      "name": "Task 1",
+      "description": "Description for task 1",
+      "deadline": "2024-06-18T00:00:00Z",
+      "is_completed": true,
+      "priority": "LO",
+      "task_type": 3,
+      "assignees": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 3,
+    "fields": {
+      "name": "Task 2",
+      "description": "Description for task 2",
+      "deadline": "2024-06-22T00:00:00Z",
+      "is_completed": true,
+      "priority": "MD",
+      "task_type": 2,
+      "assignees": [
+        7,
+        1
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 4,
+    "fields": {
+      "name": "Task 3",
+      "description": "Description for task 3",
+      "deadline": "2024-06-04T00:00:00Z",
+      "is_completed": false,
+      "priority": "HI",
+      "task_type": 4,
+      "assignees": [
+        4
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 5,
+    "fields": {
+      "name": "Task 4",
+      "description": "Description for task 4",
+      "deadline": "2024-06-20T00:00:00Z",
+      "is_completed": false,
+      "priority": "MD",
+      "task_type": 3,
+      "assignees": [
+        8,
+        7,
+        1
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 6,
+    "fields": {
+      "name": "Task 5",
+      "description": "Description for task 5",
+      "deadline": "2024-06-06T00:00:00Z",
+      "is_completed": true,
+      "priority": "UR",
+      "task_type": 3,
+      "assignees": [
+        6,
+        8
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 7,
+    "fields": {
+      "name": "Task 6",
+      "description": "Description for task 6",
+      "deadline": "2024-07-01T00:00:00Z",
+      "is_completed": true,
+      "priority": "UR",
+      "task_type": 2,
+      "assignees": [
+        1,
+        9
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 8,
+    "fields": {
+      "name": "Task 7",
+      "description": "Description for task 7",
+      "deadline": "2024-06-04T00:00:00Z",
+      "is_completed": true,
+      "priority": "HI",
+      "task_type": 1,
+      "assignees": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 9,
+    "fields": {
+      "name": "Task 8",
+      "description": "Description for task 8",
+      "deadline": "2024-06-27T00:00:00Z",
+      "is_completed": false,
+      "priority": "MD",
+      "task_type": 4,
+      "assignees": [
+        4,
+        6
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 10,
+    "fields": {
+      "name": "Task 9",
+      "description": "Description for task 9",
+      "deadline": "2024-06-25T00:00:00Z",
+      "is_completed": true,
+      "priority": "LO",
+      "task_type": 3,
+      "assignees": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 11,
+    "fields": {
+      "name": "Task 10",
+      "description": "Description for task 10",
+      "deadline": "2024-06-14T00:00:00Z",
+      "is_completed": false,
+      "priority": "HI",
+      "task_type": 2,
+      "assignees": [
+        7,
+        8
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 12,
+    "fields": {
+      "name": "Task 11",
+      "description": "Description for task 11",
+      "deadline": "2024-06-09T00:00:00Z",
+      "is_completed": true,
+      "priority": "UR",
+      "task_type": 4,
+      "assignees": [
+        5,
+        4
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 13,
+    "fields": {
+      "name": "Task 12",
+      "description": "Description for task 12",
+      "deadline": "2024-06-28T00:00:00Z",
+      "is_completed": true,
+      "priority": "MD",
+      "task_type": 1,
+      "assignees": [
+        4
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 14,
+    "fields": {
+      "name": "Task 13",
+      "description": "Description for task 13",
+      "deadline": "2024-06-21T00:00:00Z",
+      "is_completed": false,
+      "priority": "LO",
+      "task_type": 4,
+      "assignees": [
+        7
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 15,
+    "fields": {
+      "name": "Task 14",
+      "description": "Description for task 14",
+      "deadline": "2024-06-26T00:00:00Z",
+      "is_completed": false,
+      "priority": "MD",
+      "task_type": 3,
+      "assignees": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 16,
+    "fields": {
+      "name": "Task 15",
+      "description": "Description for task 15",
+      "deadline": "2024-06-03T00:00:00Z",
+      "is_completed": true,
+      "priority": "LO",
+      "task_type": 1,
+      "assignees": [
+        7
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 17,
+    "fields": {
+      "name": "Task 16",
+      "description": "Description for task 16",
+      "deadline": "2024-06-07T00:00:00Z",
+      "is_completed": true,
+      "priority": "HI",
+      "task_type": 4,
+      "assignees": [
+        5,
+        3,
+        1
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 18,
+    "fields": {
+      "name": "Task 17",
+      "description": "Description for task 17",
+      "deadline": "2024-06-28T00:00:00Z",
+      "is_completed": true,
+      "priority": "UR",
+      "task_type": 1,
+      "assignees": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 19,
+    "fields": {
+      "name": "Task 18",
+      "description": "Description for task 18",
+      "deadline": "2024-06-14T00:00:00Z",
+      "is_completed": true,
+      "priority": "MD",
+      "task_type": 2,
+      "assignees": [
+        3
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 20,
+    "fields": {
+      "name": "Task 19",
+      "description": "Description for task 19",
+      "deadline": "2024-06-22T00:00:00Z",
+      "is_completed": false,
+      "priority": "HI",
+      "task_type": 1,
+      "assignees": [
+        3,
+        8,
+        9
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 21,
+    "fields": {
+      "name": "Task 20",
+      "description": "Description for task 20",
+      "deadline": "2024-06-13T00:00:00Z",
+      "is_completed": true,
+      "priority": "HI",
+      "task_type": 2,
+      "assignees": [
+        2,
+        7
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 22,
+    "fields": {
+      "name": "Task 21",
+      "description": "Description for task 21",
+      "deadline": "2024-06-17T00:00:00Z",
+      "is_completed": false,
+      "priority": "HI",
+      "task_type": 4,
+      "assignees": [
+        6
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 23,
+    "fields": {
+      "name": "Task 22",
+      "description": "Description for task 22",
+      "deadline": "2024-06-10T00:00:00Z",
+      "is_completed": true,
+      "priority": "UR",
+      "task_type": 1,
+      "assignees": [
+        9
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 24,
+    "fields": {
+      "name": "Task 23",
+      "description": "Description for task 23",
+      "deadline": "2024-06-19T00:00:00Z",
+      "is_completed": true,
+      "priority": "MD",
+      "task_type": 3,
+      "assignees": [
+        7,
+        5
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 25,
+    "fields": {
+      "name": "Task 24",
+      "description": "Description for task 24",
+      "deadline": "2024-06-09T00:00:00Z",
+      "is_completed": false,
+      "priority": "MD",
+      "task_type": 3,
+      "assignees": [
+        1,
+        4,
+        10
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 26,
+    "fields": {
+      "name": "Task 25",
+      "description": "Description for task 25",
+      "deadline": "2024-06-07T00:00:00Z",
+      "is_completed": false,
+      "priority": "HI",
+      "task_type": 2,
+      "assignees": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 27,
+    "fields": {
+      "name": "Task 26",
+      "description": "Description for task 26",
+      "deadline": "2024-06-15T00:00:00Z",
+      "is_completed": true,
+      "priority": "HI",
+      "task_type": 1,
+      "assignees": [
+        9,
+        8
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 28,
+    "fields": {
+      "name": "Task 27",
+      "description": "Description for task 27",
+      "deadline": "2024-06-23T00:00:00Z",
+      "is_completed": true,
+      "priority": "MD",
+      "task_type": 3,
+      "assignees": [
+        7
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 29,
+    "fields": {
+      "name": "Task 28",
+      "description": "Description for task 28",
+      "deadline": "2024-07-01T00:00:00Z",
+      "is_completed": true,
+      "priority": "HI",
+      "task_type": 3,
+      "assignees": [
+        5,
+        2,
+        6
+      ]
+    }
+  },
+  {
+    "model": "task_manager.task",
+    "pk": 30,
+    "fields": {
+      "name": "Task 29",
+      "description": "Description for task 29",
+      "deadline": "2024-06-24T00:00:00Z",
+      "is_completed": false,
+      "priority": "HI",
+      "task_type": 3,
+      "assignees": [
+        4,
+        2
+      ]
+    }
+  }
+]
